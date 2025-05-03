@@ -1,0 +1,17 @@
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Compilador1.exe
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Compilador1.deps.json
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Compilador1.runtimeconfig.json
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Compilador1.dll
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Compilador1.pdb
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\bin\Debug\net9.0\Antlr4.Runtime.Standard.dll
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.csproj.AssemblyReference.cache
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.AssemblyInfoInputs.cache
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.AssemblyInfo.cs
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.csproj.CoreCompileInputs.cache
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilad.F621C214.Up2Date
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.dll
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\refint\Compilador1.dll
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.pdb
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.genruntimeconfig.cache
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\ref\Compilador1.dll
