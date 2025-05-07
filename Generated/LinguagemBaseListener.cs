@@ -71,6 +71,160 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitEscreva([NotNull] LinguagemParser.EscrevaContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.leia"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterLeia([NotNull] LinguagemParser.LeiaContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.leia"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitLeia([NotNull] LinguagemParser.LeiaContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.declaracao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDeclaracao([NotNull] LinguagemParser.DeclaracaoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.declaracao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDeclaracao([NotNull] LinguagemParser.DeclaracaoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.atribuicao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAtribuicao([NotNull] LinguagemParser.AtribuicaoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.atribuicao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAtribuicao([NotNull] LinguagemParser.AtribuicaoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.se"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterSe([NotNull] LinguagemParser.SeContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.se"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitSe([NotNull] LinguagemParser.SeContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.enquanto"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterEnquanto([NotNull] LinguagemParser.EnquantoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.enquanto"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitEnquanto([NotNull] LinguagemParser.EnquantoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.bloco"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBloco([NotNull] LinguagemParser.BlocoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.bloco"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBloco([NotNull] LinguagemParser.BlocoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>texto</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTexto([NotNull] LinguagemParser.TextoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>texto</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTexto([NotNull] LinguagemParser.TextoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>inteiro</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterInteiro([NotNull] LinguagemParser.InteiroContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>inteiro</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitInteiro([NotNull] LinguagemParser.InteiroContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>operacao</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterOperacao([NotNull] LinguagemParser.OperacaoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>operacao</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitOperacao([NotNull] LinguagemParser.OperacaoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>comparacao</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterComparacao([NotNull] LinguagemParser.ComparacaoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>comparacao</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitComparacao([NotNull] LinguagemParser.ComparacaoContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>variavel</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterVariavel([NotNull] LinguagemParser.VariavelContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>variavel</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitVariavel([NotNull] LinguagemParser.VariavelContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.tipo"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterTipo([NotNull] LinguagemParser.TipoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.tipo"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitTipo([NotNull] LinguagemParser.TipoContext context) { }
 
 	/// <inheritdoc/>
 	/// <remarks>The default implementation does nothing.</remarks>

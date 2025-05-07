@@ -6,7 +6,7 @@ public class Interpretador : LinguagemBaseListener
     public override void EnterEscreva(LinguagemParser.EscrevaContext context)
     {
         // Pega o texto dentro do comando escreva
-        var texto = context.TEXTO().GetText();
+        var texto = context.GetText();
         Console.WriteLine(texto); // Executa o comando "escreva"
     }
     

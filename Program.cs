@@ -1,25 +1,30 @@
-﻿using System;
-using Antlr4.Runtime;
-using Antlr4.Runtime.Tree;
+﻿using Antlr4.Runtime;
+using System;
+using System.IO;
 
 class Program
 {
     static void Main(string[] args)
     {
         Console.WriteLine("Digite um comando:");
-        string input = Console.ReadLine();
+        var input = Console.ReadLine();
 
-        // Inicializando o lexer e parser com o input
-        AntlrInputStream inputStream = new AntlrInputStream(input);
-        LinguagemLexer lexer = new LinguagemLexer(inputStream);
-        CommonTokenStream tokenStream = new CommonTokenStream(lexer);
-        LinguagemParser parser = new LinguagemParser(tokenStream);
+        var inputStream = new AntlrInputStream(input);
+        var lexer = new LinguagemLexer(inputStream);
+        var tokens = new CommonTokenStream(lexer);
 
-        // Gerando a árvore de análise
-        var tree = parser.programa(); // Inicia pela regra "programa"
+        tokens.Fill(); // Força a leitura de todos os tokens
 
-        // Criando o interpretador e fazendo o walk pela árvore
-        var interpretador = new Interpretador();
-        ParseTreeWalker.Default.Walk(interpretador, tree); // Caminha pela árvore com o interpretador
+        Console.WriteLine("\nTokens reconhecidos:");
+        foreach (var token in tokens.GetTokens())
+        {
+            var nome = lexer.Vocabulary.GetSymbolicName(token.Type);
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            Console.WriteLine($"<{nome}> : '{token.Text}'");
+        }
+
+        // (Opcional) continuar com parsing
+        var parser = new LinguagemParser(tokens);
+        var tree = parser.programa();
     }
 }
