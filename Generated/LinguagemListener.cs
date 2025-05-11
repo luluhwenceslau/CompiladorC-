@@ -71,6 +71,16 @@ public interface ILinguagemListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitLeia([NotNull] LinguagemParser.LeiaContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.retorne"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterRetorne([NotNull] LinguagemParser.RetorneContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.retorne"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitRetorne([NotNull] LinguagemParser.RetorneContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.declaracao"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
@@ -133,6 +143,18 @@ public interface ILinguagemListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitTexto([NotNull] LinguagemParser.TextoContext context);
 	/// <summary>
+	/// Enter a parse tree produced by the <c>agrupamento</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAgrupamento([NotNull] LinguagemParser.AgrupamentoContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>agrupamento</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAgrupamento([NotNull] LinguagemParser.AgrupamentoContext context);
+	/// <summary>
 	/// Enter a parse tree produced by the <c>inteiro</c>
 	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
 	/// </summary>
@@ -144,6 +166,18 @@ public interface ILinguagemListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitInteiro([NotNull] LinguagemParser.InteiroContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>booleano</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterBooleano([NotNull] LinguagemParser.BooleanoContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>booleano</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitBooleano([NotNull] LinguagemParser.BooleanoContext context);
 	/// <summary>
 	/// Enter a parse tree produced by the <c>operacao</c>
 	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
@@ -180,6 +214,18 @@ public interface ILinguagemListener : IParseTreeListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	void ExitVariavel([NotNull] LinguagemParser.VariavelContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>decimal</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDecimal([NotNull] LinguagemParser.DecimalContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>decimal</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDecimal([NotNull] LinguagemParser.DecimalContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.tipo"/>.
 	/// </summary>

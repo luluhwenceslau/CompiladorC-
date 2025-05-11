@@ -84,6 +84,18 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitLeia([NotNull] LinguagemParser.LeiaContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.retorne"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterRetorne([NotNull] LinguagemParser.RetorneContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.retorne"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitRetorne([NotNull] LinguagemParser.RetorneContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.declaracao"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>
@@ -158,6 +170,20 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitTexto([NotNull] LinguagemParser.TextoContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by the <c>agrupamento</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterAgrupamento([NotNull] LinguagemParser.AgrupamentoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>agrupamento</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitAgrupamento([NotNull] LinguagemParser.AgrupamentoContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by the <c>inteiro</c>
 	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
 	/// <para>The default implementation does nothing.</para>
@@ -171,6 +197,20 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitInteiro([NotNull] LinguagemParser.InteiroContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>booleano</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterBooleano([NotNull] LinguagemParser.BooleanoContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>booleano</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitBooleano([NotNull] LinguagemParser.BooleanoContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by the <c>operacao</c>
 	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
@@ -213,6 +253,20 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitVariavel([NotNull] LinguagemParser.VariavelContext context) { }
+	/// <summary>
+	/// Enter a parse tree produced by the <c>decimal</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterDecimal([NotNull] LinguagemParser.DecimalContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by the <c>decimal</c>
+	/// labeled alternative in <see cref="LinguagemParser.expressao"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitDecimal([NotNull] LinguagemParser.DecimalContext context) { }
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.tipo"/>.
 	/// <para>The default implementation does nothing.</para>
