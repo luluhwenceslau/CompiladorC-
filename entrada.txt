@@ -1,0 +1,55 @@
+// Declaração de variáveis
+inteiro idade = 25;
+float salario = 3200.75;
+char letra = 'A';
+texto nome = "João";
+
+// Vetores
+inteiro numeros[5];
+texto nomes[3];
+
+// Atribuição a vetor
+numeros[0] = 10;
+nomes[1] = "Ana";
+
+// Leitura de valores
+leia(idade);
+leia(nome);
+
+// Escrita
+escreva("Bem-vindo:");
+escreva(nome);
+
+// Operações e reatribuição
+idade = idade + 1;
+salario = salario * 1.1;
+
+// Estrutura de decisão
+se (idade >= 18) {
+    escreva("Maior de idade");
+} 
+
+// Estrutura de repetição
+enquanto (idade < 30) {
+    escreva("Contando idade...");
+    idade = idade + 1;
+}
+
+// Simulação de chamada de função
+executarRelatorio();
+
+// Definição de classe com atributo, vetor e método
+classe MinhaClasse {
+    inteiro x;
+    inteiro vetor[3];
+
+    inteiro soma(inteiro a, inteiro b) {
+        inteiro resultado;
+        resultado = a + b;
+        escreva(resultado);
+        return resultado;
+    }
+}
+
+// Fim do exemplo
+escreva("Fim do programa");

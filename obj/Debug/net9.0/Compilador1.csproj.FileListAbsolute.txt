@@ -9,10 +9,10 @@ C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compil
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.AssemblyInfoInputs.cache
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.AssemblyInfo.cs
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.csproj.CoreCompileInputs.cache
+C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.sourcelink.json
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilad.F621C214.Up2Date
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.dll
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\refint\Compilador1.dll
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.pdb
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.genruntimeconfig.cache
 C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\ref\Compilador1.dll
-C:\Users\Luana\Documents\ProjetoCompiladores\Compilador1\obj\Debug\net9.0\Compilador1.sourcelink.json
