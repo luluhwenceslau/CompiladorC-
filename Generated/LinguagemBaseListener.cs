@@ -192,6 +192,18 @@ public partial class LinguagemBaseListener : ILinguagemListener {
 	/// <param name="context">The parse tree.</param>
 	public virtual void ExitChamadaFuncao([NotNull] LinguagemParser.ChamadaFuncaoContext context) { }
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.chamadaFuncaoExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void EnterChamadaFuncaoExpr([NotNull] LinguagemParser.ChamadaFuncaoExprContext context) { }
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.chamadaFuncaoExpr"/>.
+	/// <para>The default implementation does nothing.</para>
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	public virtual void ExitChamadaFuncaoExpr([NotNull] LinguagemParser.ChamadaFuncaoExprContext context) { }
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.classe"/>.
 	/// <para>The default implementation does nothing.</para>
 	/// </summary>

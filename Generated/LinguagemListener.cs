@@ -161,6 +161,16 @@ public interface ILinguagemListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitChamadaFuncao([NotNull] LinguagemParser.ChamadaFuncaoContext context);
 	/// <summary>
+	/// Enter a parse tree produced by <see cref="LinguagemParser.chamadaFuncaoExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterChamadaFuncaoExpr([NotNull] LinguagemParser.ChamadaFuncaoExprContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="LinguagemParser.chamadaFuncaoExpr"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitChamadaFuncaoExpr([NotNull] LinguagemParser.ChamadaFuncaoExprContext context);
+	/// <summary>
 	/// Enter a parse tree produced by <see cref="LinguagemParser.classe"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>

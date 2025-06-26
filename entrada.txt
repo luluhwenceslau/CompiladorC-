@@ -24,10 +24,12 @@ escreva(nome);
 idade = idade + 1;
 salario = salario * 1.1;
 
-// Estrutura de decisão
+// Estrutura de decisão com senao
 se (idade >= 18) {
     escreva("Maior de idade");
-} 
+} senao {
+    escreva("Menor de idade");
+}
 
 // Estrutura de repetição
 enquanto (idade < 30) {
@@ -35,21 +37,23 @@ enquanto (idade < 30) {
     idade = idade + 1;
 }
 
-// Simulação de chamada de função
-executarRelatorio();
-
 // Definição de classe com atributo, vetor e método
-classe MinhaClasse {
-    inteiro x;
-    inteiro vetor[3];
+//classe MinhaClasse {
+//    inteiro x;
+//    inteiro vetor[3];
 
-    inteiro soma(inteiro a, inteiro b) {
-        inteiro resultado;
-        resultado = a + b;
-        escreva(resultado);
-        return resultado;
-    }
-}
+//    inteiro soma(inteiro a, inteiro b) {
+//        inteiro resultado;
+//        resultado = a + b;
+//        escreva(resultado);
+//        return resultado;
+//    }
+//}
+
+inteiro resultado = soma(5, 3);
+escreva(resultado);
+
+
 
 // Fim do exemplo
 escreva("Fim do programa");

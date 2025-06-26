@@ -2,7 +2,9 @@ grammar Linguagem;
 
 // Regras da gramática (Parser)
 
-programa: (comando | declaracao | funcao | classe)* EOF;
+programa
+    : (comando | declaracao | funcao | classe)* EOF
+    ;
 
 declaracao
     : tipo ID (ABRE_COLCH INT FECHA_COLCH)? (IGUAL expressao)? PONTO_VIRGULA
@@ -31,7 +33,7 @@ escrita
     ;
 
 decisao
-    : SE ABRE_PAREN expressao FECHA_PAREN bloco
+    : SE ABRE_PAREN expressao FECHA_PAREN bloco (SENAO bloco)?
     ;
 
 repeticao
@@ -54,8 +56,14 @@ parametro
     : tipo ID
     ;
 
+// Chamada de função como comando (com ponto e vírgula)
 chamadaFuncao
-    : ID ABRE_PAREN (expressao (VIRGULA expressao)*)? FECHA_PAREN PONTO_VIRGULA
+    : chamadaFuncaoExpr PONTO_VIRGULA
+    ;
+
+// Chamada de função dentro de expressões (sem ponto e vírgula)
+chamadaFuncaoExpr
+    : ID ABRE_PAREN (expressao (VIRGULA expressao)*)? FECHA_PAREN
     ;
 
 classe
@@ -70,6 +78,7 @@ expressao
     : expressao op=(MAIS | MENOS | MULT | DIV) expressao
     | expressao op=(MAIOR | MENOR | MAIOR_IGUAL | MENOR_IGUAL | IGUAL_IGUAL | DIFERENTE) expressao
     | ABRE_PAREN expressao FECHA_PAREN
+    | chamadaFuncaoExpr
     | ID
     | ID ABRE_COLCH INT FECHA_COLCH
     | INT
@@ -78,7 +87,7 @@ expressao
     | STRING_LITERAL
     ;
 
-// ✅ Regra adicionada para tipos
+// Regra para tipos
 tipo
     : INTEIRO
     | FLOAT
@@ -94,6 +103,7 @@ CHAR        : 'char';
 TEXTO       : 'texto';
 RETURN      : 'return';
 SE          : 'se';
+SENAO       : 'senao';
 ENQUANTO    : 'enquanto';
 LEIA        : 'leia';
 ESCREVA     : 'escreva';
