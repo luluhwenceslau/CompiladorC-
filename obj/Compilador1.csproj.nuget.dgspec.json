@@ -47,6 +47,10 @@
             "Antlr4.Runtime.Standard": {
               "target": "Package",
               "version": "[4.13.1, )"
+            },
+            "LLVMSharp": {
+              "target": "Package",
+              "version": "[16.0.0, )"
             }
           },
           "imports": [

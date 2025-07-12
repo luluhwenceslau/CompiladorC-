@@ -2,6 +2,7 @@
 using Antlr4.Runtime.Tree;
 using System;
 using System.IO;
+using Compilador; // Namespace onde estão Interpretador, TabelaSimbolos, Simbolo
 
 class Program
 {
@@ -45,20 +46,21 @@ class Program
 
             Console.WriteLine("\nAnálise sintática concluída.");
 
-            // Exibir a árvore sintática em formato texto simples
             Console.WriteLine("\nÁrvore Sintática (formato texto):");
             Console.WriteLine(tree.ToStringTree(parser));
 
-            // Exibir a árvore sintática com indentação (mais legível)
             Console.WriteLine("\nÁrvore Sintática (formatada):");
             PrintTree(tree, parser);
 
-            // Aqui você pode continuar com a execução do interpretador
-            // var interpretador = new Interpretador();
-            // var walker = new ParseTreeWalker();
-            // walker.Walk(interpretador, tree);
+            // Executar interpretador
+            var interpretador = new Interpretador();
+            var walker = new ParseTreeWalker();
+            walker.Walk(interpretador, tree);
 
             Console.WriteLine("\nExecução concluída.");
+
+            Console.WriteLine("\nTabela de Símbolos após execução:");
+            interpretador.TabelaSimbolos.ExibirTabela();
         }
         catch (Exception ex)
         {
@@ -69,7 +71,6 @@ class Program
         Console.ReadLine();
     }
 
-    // Método auxiliar para imprimir a árvore com indentação
     static void PrintTree(IParseTree tree, Parser parser, string indent = "")
     {
         string nodeText = Trees.GetNodeText(tree, parser);

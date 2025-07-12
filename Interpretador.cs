@@ -1,72 +1,84 @@
 using Antlr4.Runtime.Tree;
-
-public class Simbolo
-{
-    public string Nome { get; }
-    public string Tipo { get; }
-    public bool Inicializado { get; set; }
-
-    public Simbolo(string nome, string tipo)
-    {
-        Nome = nome;
-        Tipo = tipo;
-        Inicializado = false;
-    }
-}
+using Compilador;
+using LLVMSharp.Interop;
 
 public class Interpretador : LinguagemBaseListener
 {
     private readonly Stack<Dictionary<string, object>> escopos = new();
-    private readonly Stack<Dictionary<string, Simbolo>> tabelaSimbolos = new();
+    private readonly TabelaSimbolos tabelaSimbolos = new();
     private readonly Dictionary<string, LinguagemParser.FuncaoContext> funcoes = new();
     private readonly Dictionary<string, LinguagemParser.ClasseContext> classes = new();
     private object? valorRetorno = null;
 
+    public TabelaSimbolos TabelaSimbolos { get; } = new TabelaSimbolos();
+
+    private GeradorLLVM gerador;
+
     public Interpretador()
     {
-        // Escopo global inicial
+
+
+        gerador = new GeradorLLVM();
+
         escopos.Push(new Dictionary<string, object>());
-        tabelaSimbolos.Push(new Dictionary<string, Simbolo>());
 
         // Funções nativas
         funcoes["escreva"] = null;
         funcoes["leia"] = null;
     }
 
-    // Gerenciamento de escopos
+    
+
+    private LLVMValueRef GerarCodigoExpressao(LinguagemParser.ExpressaoContext ctx)
+    {
+        if (ctx.INT() != null)
+        {
+            int valor = int.Parse(ctx.INT().GetText());
+            return gerador.ConstInt32(valor);
+        }
+
+        if (ctx.expressao().Length == 2)
+        {
+            var esquerda = GerarCodigoExpressao(ctx.expressao(0));
+            var direita = GerarCodigoExpressao(ctx.expressao(1));
+
+            switch (ctx.op.Type)
+            {
+                case LinguagemParser.MAIS:
+                    return gerador.GerarSoma(esquerda, direita);
+                case LinguagemParser.MENOS:
+                    return gerador.Builder.BuildSub(esquerda, direita, "sub_tmp");
+                    // Adicione outros operadores conforme necessário
+            }
+        }
+
+        throw new Exception("Expressão não suportada para geração LLVM");
+    }
+
+
+
     private void EntrarEscopo()
     {
         escopos.Push(new Dictionary<string, object>());
-        tabelaSimbolos.Push(new Dictionary<string, Simbolo>());
+        tabelaSimbolos.EntrarEscopo();
     }
 
     private void SairEscopo()
     {
         escopos.Pop();
-        tabelaSimbolos.Pop();
+        tabelaSimbolos.SairEscopo();
     }
 
-    // Tabela de símbolos: inserir e buscar
     private void InserirSimbolo(string nome, string tipo)
     {
-        var escopoAtual = tabelaSimbolos.Peek();
-        if (escopoAtual.ContainsKey(nome))
-            throw new Exception($"Símbolo '{nome}' já declarado neste escopo.");
-
-        escopoAtual[nome] = new Simbolo(nome, tipo);
+        tabelaSimbolos.InserirSimbolo(nome, tipo, CategoriaSimbolo.Variavel);
     }
 
     private Simbolo? BuscarSimbolo(string nome)
     {
-        foreach (var escopo in tabelaSimbolos.Reverse())
-        {
-            if (escopo.TryGetValue(nome, out var simbolo))
-                return simbolo;
-        }
-        return null;
+        return tabelaSimbolos.BuscarSimbolo(nome);
     }
 
-    // Gerenciamento de valores
     private object? ObterValor(string nome)
     {
         foreach (var escopo in escopos.Reverse())
@@ -102,11 +114,69 @@ public class Interpretador : LinguagemBaseListener
         var chamadaExpr = context.chamadaFuncaoExpr();
         string nomeFuncao = chamadaExpr.ID().GetText();
 
+        // Tratamento das funções nativas
+        if (nomeFuncao == "escreva")
+        {
+            var argumentos = chamadaExpr.expressao();
+            foreach (var arg in argumentos)
+            {
+                var valor = InterpretarExpressao(arg);
+                Console.Write(valor);
+            }
+            Console.WriteLine();
+            return; // Não precisa continuar o processamento normal
+        }
+        else if (nomeFuncao == "leia")
+        {
+            var argumentos = chamadaExpr.expressao();
+            if (argumentos.Length != 1)
+                throw new Exception("Função 'leia' deve receber exatamente um argumento (variável).");
+
+            string nomeVariavel = argumentos[0].GetText();
+
+            string entrada = Console.ReadLine() ?? "";
+
+            var simbolo = BuscarSimbolo(nomeVariavel);
+            if (simbolo == null)
+                throw new Exception($"Variável '{nomeVariavel}' não declarada.");
+
+            object valorConvertido;
+
+            // Converte a entrada para o tipo da variável
+            switch (simbolo.Tipo)
+            {
+                case "inteiro":
+                    if (!int.TryParse(entrada, out int intVal))
+                        throw new Exception($"Entrada inválida para inteiro: '{entrada}'");
+                    valorConvertido = intVal;
+                    break;
+                case "float":
+                    if (!double.TryParse(entrada, out double doubleVal))
+                        throw new Exception($"Entrada inválida para float: '{entrada}'");
+                    valorConvertido = doubleVal;
+                    break;
+                case "char":
+                    if (string.IsNullOrEmpty(entrada))
+                        throw new Exception("Entrada vazia para char");
+                    valorConvertido = entrada[0];
+                    break;
+                case "texto":
+                    valorConvertido = entrada;
+                    break;
+                default:
+                    throw new Exception($"Tipo não suportado para leitura: {simbolo.Tipo}");
+            }
+
+            DefinirValor(nomeVariavel, valorConvertido);
+            simbolo.Inicializado = true;
+            return;
+        }
+
         if (!funcoes.TryGetValue(nomeFuncao, out var funcaoContext))
             throw new Exception($"Função não definida: {nomeFuncao}");
 
         var parametros = funcaoContext.parametros();
-        var argumentos = chamadaExpr.expressao();
+        var argumentosFuncao = chamadaExpr.expressao();
 
         EntrarEscopo();
 
@@ -116,18 +186,23 @@ public class Interpretador : LinguagemBaseListener
             for (int i = 0; i < listaParametros.Length; i++)
             {
                 string nomeParametro = listaParametros[i].ID().GetText();
-                object valorArgumento = InterpretarExpressao(argumentos[i]);
+                object valorArgumento = InterpretarExpressao(argumentosFuncao[i]);
                 DefinirValor(nomeParametro, valorArgumento);
             }
         }
+
+        valorRetorno = null;
 
         var walker = new ParseTreeWalker();
         walker.Walk(this, funcaoContext.bloco());
 
         SairEscopo();
+
+        if (valorRetorno == null)
+            throw new Exception($"Função '{nomeFuncao}' não retornou valor.");
     }
 
-    // Controle de fluxo aprimorado
+
     public override void EnterDecisao(LinguagemParser.DecisaoContext context)
     {
         bool condicao = Convert.ToBoolean(InterpretarExpressao(context.expressao()));
@@ -163,13 +238,11 @@ public class Interpretador : LinguagemBaseListener
         walker.Walk(this, bloco);
     }
 
-    // Manipulação de retorno
     public override void EnterRetorno(LinguagemParser.RetornoContext context)
     {
         valorRetorno = InterpretarExpressao(context.expressao());
     }
 
-    // Declaração com análise semântica
     public override void EnterDeclaracao(LinguagemParser.DeclaracaoContext context)
     {
         string nome = context.ID().GetText();
@@ -195,7 +268,6 @@ public class Interpretador : LinguagemBaseListener
         DefinirValor(nome, valor);
     }
 
-    // Atribuição com verificação semântica
     public override void EnterAtribuicao(LinguagemParser.AtribuicaoContext context)
     {
         string nome = context.ID().GetText();
@@ -204,6 +276,7 @@ public class Interpretador : LinguagemBaseListener
             throw new Exception($"Variável '{nome}' não declarada.");
 
         object valor = InterpretarExpressao(context.expressao());
+        var valorLLVM = GerarCodigoExpressao(context.expressao());
 
         if (!TipoCompativel(simbolo.Tipo, valor))
             throw new Exception($"Tipo incompatível na atribuição à variável '{nome}'. Esperado '{simbolo.Tipo}', mas recebeu '{valor.GetType().Name}'.");
@@ -227,7 +300,6 @@ public class Interpretador : LinguagemBaseListener
         }
     }
 
-    // Interpretação de expressões com análise semântica
     private object InterpretarExpressao(LinguagemParser.ExpressaoContext ctx)
     {
         if (ctx.chamadaFuncaoExpr() != null)
@@ -364,7 +436,7 @@ public class Interpretador : LinguagemBaseListener
         return tipoVariavel switch
         {
             "inteiro" => valor is int,
-            "float" => valor is double || valor is int, // aceita int para float (conversão implícita)
+            "float" => valor is double || valor is int,
             "char" => valor is char,
             "texto" => valor is string,
             _ => false,
